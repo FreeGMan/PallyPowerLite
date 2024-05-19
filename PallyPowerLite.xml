@@ -1,0 +1,1081 @@
+<Ui xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd" xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="PallyPowerLite.lua" />
+	<Script file="PallyPowerLiteValues.lua" />
+	
+	
+	<Frame name="PPLHeaderClassInfoTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="30" y="20" />
+		</Size>
+		<Layers>
+			<Layer>
+				<Texture name="$parentIcon" file="Interface\Icons\ClassIcon_Warrior">
+					<Size>
+						<AbsDimension x="16" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentCounter" inherits="GameFontHighlightSmall" text="0">
+					<Size>
+						<AbsDimension x="14" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="16" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PPLHeaderClassFrameTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="170" y="60" />
+		</Size>
+		<Frames>
+			<Frame name="$parentInfo1" inherits="PPLHeaderClassInfoTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="3" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentInfo2" inherits="PPLHeaderClassInfoTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="36" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentInfo3" inherits="PPLHeaderClassInfoTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="69" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentInfo4" inherits="PPLHeaderClassInfoTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="102" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentInfo5" inherits="PPLHeaderClassInfoTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="135" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentInfo6" inherits="PPLHeaderClassInfoTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="3" y="-32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentInfo7" inherits="PPLHeaderClassInfoTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="36" y="-32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentInfo8" inherits="PPLHeaderClassInfoTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="69" y="-32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentInfo9" inherits="PPLHeaderClassInfoTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="102" y="-32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentInfo11" inherits="PPLHeaderClassInfoTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="135" y="-32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+	<Frame name="PPLHeaderFrameTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="100" y="60" />
+		</Size>
+		<Layers>
+			<Layer>
+				<Texture name="$parentLeftLine" file="Interface\Tooltips\UI-Tooltip-Background">
+					<Size>
+						<AbsDimension x="2" y="60" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PPLColumnPallyFrameTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="170" y="50" />
+		</Size>
+		<Layers>
+			<Layer>
+				<Texture name="$parentTopLine" file="Interface\Tooltips\UI-Tooltip-Background">
+					<Size>
+						<AbsDimension x="172" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture texCoords="" name="$parentRoleIcon" file="Interface\LFGFrame\UI-LFG-ICON-ROLES">
+					<Size>
+						<AbsDimension x="18" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-4" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.2617188" right="0.5234375" top="0.2617188" bottom="0.5234375" />
+				</Texture>
+				<FontString name="$parentNameText" inherits="GameFontHighlightSmallLeft" text="Pally name">
+					<Size>
+						<AbsDimension x="120" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="20" y="-4" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture texCoords="" name="$parentHolyIcon" file="Interface\Icons\spell_holy_holybolt">
+					<Size>
+						<AbsDimension x="16" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="4" y="-29" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentHolyTalentCount" inherits="GameFontHighlightSmallLeft" text="31">
+					<Size>
+						<AbsDimension x="20" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="24" y="-28" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture texCoords="" name="$parentProtIcon" file="Interface\Icons\spell_holy_devotionaura">
+					<Size>
+						<AbsDimension x="16" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="64" y="-29" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentProtTalentCount" inherits="GameFontHighlightSmallLeft" text="31">
+					<Size>
+						<AbsDimension x="20" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="84" y="-28" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture texCoords="" name="$parentRetriIcon" file="Interface\Icons\spell_holy_auraoflight">
+					<Size>
+						<AbsDimension x="16" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="124" y="-29" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentRetriTalentCount" inherits="GameFontHighlightSmallLeft" text="31">
+					<Size>
+						<AbsDimension x="20" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="144" y="-28" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PPLColumnFrameTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="100" y="50" />
+		</Size>
+		<Layers>
+			<Layer>
+				<Texture name="$parentTopLine" file="Interface\Tooltips\UI-Tooltip-Background">
+					<Size>
+						<AbsDimension x="102" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer>
+				<Texture name="$parentLeftLine" file="Interface\Tooltips\UI-Tooltip-Background">
+					<Size>
+						<AbsDimension x="2" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentButton" enableMouse="true">
+				<Size>
+					<AbsDimension x="45" y="45" />
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentIcon" file="Interface\Icons\spell_holy_auramastery">
+							<Size>
+								<AbsDimension x="32" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="HIGHLIGHT">
+						<Texture name="$parentHighlight" file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD">
+							<Size>
+								<AbsDimension x="38" y="38" />
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER" relativeTo="$parentIcon">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						self:RegisterForClicks("LeftButtonUp","RightButtonUp");
+						self:EnableMouseWheel(1);
+					</OnLoad>
+					<OnClick>
+						PallyPowerLite:RowButton_OnClick(self, button);
+					</OnClick>
+					<OnMouseWheel>
+						PallyPowerLite:RowButton_OnMouseWheel(self, delta);
+					</OnMouseWheel>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+
+	
+	<Button name="PPLOverlayAnchorButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16" />
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Size x="8" y="8" />
+					<Color r="0" g="1" b="0" a="1" />
+					<Scripts>
+						<OnLoad>
+							SetPortraitToTexture(self)
+						</OnLoad>
+					</Scripts>
+				</Texture>
+			</Layer>
+			<Layer level="BORDER">
+				<Texture name="$parentBorder" file="Interface\Buttons\UI-RadioButton">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Size x="16" y="16" />
+					<TexCoords left="0" right="0.25" top="0" bottom="1" />
+				</Texture>
+			</Layer>
+		</Layers>
+	</Button>
+	<Button name="PPLOverlayButtonTemplate" inherits="SecureActionButtonTemplate" virtual="true" enableMouse="true">
+		<Size>
+			<AbsDimension x="80" y="36" />
+		</Size>
+		<Backdrop bgFile="Interface\Buttons\WHITE8X8" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="3" right="3" top="3" bottom="3" />
+			</BackgroundInsets>
+			<TileSize val="16" />
+			<EdgeSize val="16" />
+		</Backdrop>
+		<Attributes>
+			<Attribute name="type1" value="spell"/>
+			<Attribute name="spell" value=""/>
+		</Attributes>
+		<Scripts>
+			<OnLoad inherit="prepend">
+				PallyPowerLite:OverlayButton_OnLoad(self)
+				self:RegisterForClicks("LeftButtonUp");
+				self:EnableMouseWheel(1);
+			</OnLoad>
+			<OnMouseWheel>
+				PallyPowerLite:OverlayButton_OnMouseWheel(self, delta);
+			</OnMouseWheel>
+		</Scripts>
+	</Button>
+	
+	
+	<Frame name="PPLAssignmentFrame" inherits="BackdropTemplate" hidden="true" parent="UIParent" toplevel="true" movable="true" enableMouse="true">
+		<Size>
+			<AbsDimension x="400" y="500" />
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="100" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<KeyValues>
+			<KeyValue key="backdropInfo" value="BACKDROP_DARK_DIALOG_32_32" keyType="string" type="global" />
+		</KeyValues>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background-Dark" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+			<TileSize val="32" />
+			<EdgeSize val="32" />
+		</Backdrop>
+		<Layers>
+			<Layer>
+				<Texture name="$parentTitleImage" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="356" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentTitleFrame">
+				<Size>
+					<AbsDimension x="160" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentTitleText" inherits="GameFontNormal" text="PallyPowerLight">
+							<Scripts>
+								<OnLoad>
+									self:SetText(PALLYPOWERLIGHT_NAME)
+								</OnLoad>
+							</Scripts>
+							<Size>
+								<AbsDimension x="140" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnMouseDown>
+						if button == "LeftButton" then
+							PPLAssignmentFrame:StartMoving()
+							PPLAssignmentFrame:SetClampedToScreen(true)
+							PPLAssignmentFrame.isMoving = true
+						end
+					</OnMouseDown>
+					<OnMouseUp>
+						if PPLAssignmentFrame.isMoving then
+							PPLAssignmentFrame:StopMovingOrSizing()
+							PPLAssignmentFrame.isMoving = false
+						end
+					</OnMouseUp>
+				</Scripts>
+			</Frame>
+			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-6" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Frame name="$parentHeader">
+				<Size>
+					<AbsDimension x="370" y="60" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="$parentClassFrame" inherits="PPLHeaderClassFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentFrameAura" inherits="PPLHeaderFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="170" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer>
+								<Texture name="$parentIcon" file="Interface\Icons\spell_holy_auramastery">
+									<Size>
+										<AbsDimension x="32" y="32" />
+									</Size>
+									<Anchors>
+										<Anchor point="CENTER">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+					</Frame>
+					<Frame name="$parentFrameBuff" inherits="PPLHeaderFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="270" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer>
+								<Texture name="$parentIcon1" file="Interface\Icons\spell_holy_greaterblessingofkings">
+									<Size>
+										<AbsDimension x="32" y="32" />
+									</Size>
+									<Anchors>
+										<Anchor point="CENTER">
+											<Offset>
+												<AbsDimension x="-12" y="8" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+							<Layer>
+								<Texture name="$parentIcon2" file="Interface\Icons\spell_magic_greaterblessingofkings">
+									<Size>
+										<AbsDimension x="32" y="32" />
+									</Size>
+									<Anchors>
+										<Anchor point="CENTER">
+											<Offset>
+												<AbsDimension x="12" y="-8" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+					</Frame>
+				</Frames>
+			</Frame>
+			<Frame name="$parentRow1">
+				<Size>
+					<AbsDimension x="370" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-90" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="$parentPallyInfo" inherits="PPLColumnPallyFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyAura" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="170" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyBuff" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="270" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+			<Frame name="$parentRow2">
+				<Size>
+					<AbsDimension x="370" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-140" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="$parentPallyInfo" inherits="PPLColumnPallyFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyAura" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="170" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyBuff" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="270" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+			<Frame name="$parentRow3">
+				<Size>
+					<AbsDimension x="370" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-190" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="$parentPallyInfo" inherits="PPLColumnPallyFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyAura" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="170" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyBuff" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="270" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+			<Frame name="$parentRow4">
+				<Size>
+					<AbsDimension x="370" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-240" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="$parentPallyInfo" inherits="PPLColumnPallyFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyAura" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="170" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyBuff" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="270" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+			<Frame name="$parentRow5">
+				<Size>
+					<AbsDimension x="370" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-290" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="$parentPallyInfo" inherits="PPLColumnPallyFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyAura" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="170" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyBuff" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="270" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+			<Frame name="$parentRow6">
+				<Size>
+					<AbsDimension x="370" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-340" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="$parentPallyInfo" inherits="PPLColumnPallyFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyAura" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="170" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyBuff" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="270" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+			<Frame name="$parentRow7">
+				<Size>
+					<AbsDimension x="370" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-390" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="$parentPallyInfo" inherits="PPLColumnPallyFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyAura" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="170" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyBuff" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="270" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+			<Frame name="$parentRow8">
+				<Size>
+					<AbsDimension x="370" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-440" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="$parentPallyInfo" inherits="PPLColumnPallyFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyAura" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="170" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentPallyBuff" inherits="PPLColumnFrameTemplate">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="270" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad inherit="prepend">
+				self:OnBackdropLoaded()
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	
+	
+	<Frame name="PPLOverlayFrame" hidden="true" parent="UIParent" movable="true" enableMouse="true">
+		<Size>
+			<AbsDimension x="80" y="100" />
+		</Size>
+		<Anchors>
+			<Anchor point="RIGHT">
+				<Offset>
+					<AbsDimension x="-100" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="$parentButtonAura" inherits="PPLOverlayButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentIcon" file="Interface\Icons\spell_holy_auramastery">
+							<Size>
+								<AbsDimension x="20" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="-1" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentButtonSeal" inherits="PPLOverlayButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentIcon" file="Interface\Icons\spell_holy_sealofvengeance">
+							<Size>
+								<AbsDimension x="20" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="-1" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentButtonBuff" inherits="PPLOverlayButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-64" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentIcon" file="Interface\Icons\Spell_magic_greaterblessingofkings">
+							<Size>
+								<AbsDimension x="20" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="-1" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentCounter" inherits="GameFontHighlightSmall" text="" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="18" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="20" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentButtonAnchor" inherits="PPLOverlayAnchorButtonTemplate" movable="true" enableMouse="true" toplevel="true">
+				<Size>
+					<AbsDimension x="16" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-6" y="-27" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						self:RegisterForDrag("LeftButton");
+						self:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+					</OnLoad>
+					<OnClick>
+						PallyPowerLite:OverlayAnchorButton_OnClick(self, button)
+					</OnClick>
+					<OnDragStart>
+						PallyPowerLite:OverlayAnchorButton_OnDragStart(self, button)
+					</OnDragStart>
+					<OnDragStop>
+						PallyPowerLite:OverlayAnchorButton_OnDragStop(self)
+					</OnDragStop>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>

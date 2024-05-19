@@ -1,0 +1,17 @@
+## Title: PallyPower Lite
+## Version: 0.9.3
+## Author: freegman
+## Interface: 40400
+## Notes: Helper for Paladins assignment and tracking buffs and auras in Raid/Party
+## DefaultState: enabled
+## Dependencies: 
+## OptionalDeps: Ace3, LibSerialize
+## SavedVariables: PallyPowerLiteDB, PallyPowerLiteSelfAssignment
+## X-Category: Paladin
+## X-Embeds: Ace3, LibSerialize
+## X-Curse-Project-ID: 1019127
+
+
+embeds.xml
+
+PallyPowerLite.xml
