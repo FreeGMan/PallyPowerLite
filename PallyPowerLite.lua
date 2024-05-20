@@ -6,7 +6,7 @@ local LS = LibStub("LibSerialize")
 
 -- Saved variable
 PallyPowerLiteSelfAssignment = {}
-PPL_DebugEnabled = false
+PPL_DebugEnabled = true
 
 -- Main variable
 player = UnitName("player")
@@ -48,7 +48,8 @@ function PallyPowerLite:OnInitialize()
 	self:RegisterComm(PallyPowerLite.commPrefix)
 
 	-- For first init state
-	if not PallyPowerLiteSelfAssignment.assignment then
+	self:Debug(PallyPowerLiteSelfAssignment)
+	if not PallyPowerLiteSelfAssignment.buff then
 		PallyPowerLiteSelfAssignment = table.copy(self.pallyDataTemplate.assignment)	
 	end
 
@@ -224,7 +225,7 @@ function PallyPowerLite:UpdateRoster()
 
 	-- Clean pallys data who not in roster anymore
 	for pallyName in pairs(pallysData) do
-		if pallyName ~= player and roster[pallyName] then
+		if pallyName ~= player and not roster[pallyName] then
 			table.remove(pallysData, pallyName)
 		end
 	end
@@ -456,7 +457,8 @@ function PallyPowerLite:ProcessIncomeData(incomeData, sender)
 				if pallyName and pallyData and roster[pallyName] then
 					pallysData[pallyName] = pallyData
 					if pallyName == player then
-						slef:UpdateRoster()
+						PallyPowerLiteSelfAssignment = table.copy(pallyData.assignment)
+						self:UpdateRoster()
 						self:UpdateOverlayLayout()
 					end
 				end

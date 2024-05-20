@@ -50,4 +50,5 @@ A couple of things I might implement in the future
 - Free assignment option
 - Skins and other frame options
 - Support more than 8 pallys in assignment window
+- Cooldowns for overlay frame
 - ???

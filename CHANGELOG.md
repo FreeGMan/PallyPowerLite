@@ -1,5 +1,11 @@
 # Pally Power Lite
 
+## 0.9.5
+
+- Fix roster update function
+- Fix self assignment update, when it was changed by party/raid member
+- Update TODO
+
 ## 0.9.4
 
 - Fix cast spell on overlay button click (now always cast on self)
