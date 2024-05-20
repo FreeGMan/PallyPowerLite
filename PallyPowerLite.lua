@@ -48,7 +48,7 @@ function PallyPowerLite:OnInitialize()
 	self:RegisterComm(PallyPowerLite.commPrefix)
 
 	-- For first init state
-	if not PallyPowerLiteSelfAssignment then
+	if not PallyPowerLiteSelfAssignment.assignment then
 		PallyPowerLiteSelfAssignment = table.copy(self.pallyDataTemplate.assignment)	
 	end
 
@@ -373,13 +373,13 @@ function PallyPowerLite:CycleThroughSpell(pallyName, spellType, forward)
 	local currentSpell = 0
 	if spellType == "Buff" then
 		spellsData = PallyPowerLite.Buffs
-		currentSpell = pallyData.assignment.buff
+		currentSpell = pallyData.assignment.buff or 0
 	elseif spellType == "Aura" then
 		spellsData = PallyPowerLite.Auras
-		currentSpell = pallyData.assignment.aura
+		currentSpell = pallyData.assignment.aura or 0
 	else
 		spellsData = PallyPowerLite.Seals
-		currentSpell = pallyData.assignment.seal
+		currentSpell = pallyData.assignment.seal or 0
 	end
 	
 	if forward then

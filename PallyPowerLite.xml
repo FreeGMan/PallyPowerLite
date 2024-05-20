@@ -417,6 +417,7 @@
 		<Attributes>
 			<Attribute name="type1" value="spell"/>
 			<Attribute name="spell" value=""/>
+			<Attribute name="unit" value="player"/>
 		</Attributes>
 		<Scripts>
 			<OnLoad inherit="prepend">
