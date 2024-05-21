@@ -1,5 +1,10 @@
 # Pally Power Lite
 
+## 1.0.0
+
+- Release update
+- Say hello to Cataclysm
+
 ## 0.9.5
 
 - Fix roster update function

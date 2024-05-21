@@ -6,7 +6,7 @@ local LS = LibStub("LibSerialize")
 
 -- Saved variable
 PallyPowerLiteSelfAssignment = {}
-PPL_DebugEnabled = true
+PPL_DebugEnabled = false
 
 -- Main variable
 player = UnitName("player")
@@ -48,7 +48,7 @@ function PallyPowerLite:OnInitialize()
 	self:RegisterComm(PallyPowerLite.commPrefix)
 
 	-- For first init state
-	self:Debug(PallyPowerLiteSelfAssignment)
+	--self:Debug(PallyPowerLiteSelfAssignment)
 	if not PallyPowerLiteSelfAssignment.buff then
 		PallyPowerLiteSelfAssignment = table.copy(self.pallyDataTemplate.assignment)	
 	end
