@@ -204,19 +204,6 @@ function PallyPowerLite:UpdateRoster()
 				unitInfo.hasBuff = false
 				unitInfo.dead = false
 				
-				if PallyPowerLiteSelfAssignment and self.Buffs[PallyPowerLiteSelfAssignment.buff] ~= "" then
-					local j=1
-					local currentBuffID = select(10, UnitBuff(unitID, j))
-					while currentBuffID do
-						if currentBuffID == self.Buffs[PallyPowerLiteSelfAssignment.buff] then
-							unitInfo.hasBuff = true
-						end
-		
-						j=j+1
-						currentBuffSource, _, _, currentBuffID = select(7, UnitBuff(unitID, j))
-					end
-				end
-
 				roster[unitName] = unitInfo
 				classList[unitInfo.classID] = classList[unitInfo.classID] + 1
 			end
@@ -227,6 +214,26 @@ function PallyPowerLite:UpdateRoster()
 	for pallyName in pairs(pallysData) do
 		if pallyName ~= player and not roster[pallyName] then
 			table.remove(pallysData, pallyName)
+		end
+	end
+
+	self:UpdateRosterBuffs()
+end
+
+function PallyPowerLite:UpdateRosterBuffs()
+	if not PallyPowerLiteSelfAssignment or self.Buffs[PallyPowerLiteSelfAssignment.buff] == "" then return end
+
+	for _, unitInfo in pairs(roster) do
+		unitInfo.hasBuff = false
+		local j=1
+		local currentBuffID = select(10, UnitBuff(unitInfo.unitID, j))
+		while currentBuffID do
+			if currentBuffID == self.Buffs[PallyPowerLiteSelfAssignment.buff] then
+				unitInfo.hasBuff = true
+			end
+		
+			j=j+1
+			currentBuffID = select(10, UnitBuff(unitInfo.unitID, j))
 		end
 	end
 end
@@ -499,10 +506,14 @@ function PallyPowerLite:UNIT_AURA(event, unitTarget, updateInfo)
 				end
 			end
 		end
-		-- Because I don't want to cache aura instances data and GetAuraDataByAuraInstanceID doesn't work on removed aura
-		-- Just update if something was removed but only outside of combat (for optimization)
-		if updateInfo.removedAuraInstanceIDs and not InCombatLockdown() then
-			self:UpdateRoster()
+		if updateInfo.removedAuraInstanceIDs then
+			-- Because I don't want to cache aura instances data and GetAuraDataByAuraInstanceID doesn't work on removed aura
+			-- always call frame update, but updating full roster only out of combat
+			if not InCombatLockdown() then
+				self:UpdateRoster()
+			else
+				self:UpdateRosterBuffs()
+			end
 			needUpdate = true
 		end
 		if needUpdate then
