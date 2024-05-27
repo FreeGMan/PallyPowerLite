@@ -324,14 +324,18 @@ function PallyPowerLite:UpdateOverlayLayout()
 	end
 	
 	local buttonName = "PPLOverlayFrameButtonAura";
-	_G[buttonName]:SetAttribute("spell", (not auraID or auraID == "") and "" or GetSpellInfo(auraID))
 	_G[buttonName]:SetBackdropColor(auraColor["r"], auraColor["g"], auraColor["b"], auraColor["a"])
 	_G[buttonName.."Icon"]:SetTexture(self.AurasIcons[PallyPowerLiteSelfAssignment.aura])
+	if not InCombatLockdown() then -- Attribute can be updated only not in combat
+		_G[buttonName]:SetAttribute("spell", (not auraID or auraID == "") and "" or GetSpellInfo(auraID))
+	end
 
 	local buttonName = "PPLOverlayFrameButtonSeal";
-	_G[buttonName]:SetAttribute("spell", (not sealID or sealID == "") and "" or GetSpellInfo(sealID))
 	_G[buttonName]:SetBackdropColor(sealColor["r"], sealColor["g"], sealColor["b"], sealColor["a"])
 	_G[buttonName.."Icon"]:SetTexture(self.SealsIcons[PallyPowerLiteSelfAssignment.seal])
+	if not InCombatLockdown() then -- Attribute can be updated only not in combat
+		_G[buttonName]:SetAttribute("spell", (not sealID or sealID == "") and "" or GetSpellInfo(sealID))
+	end
 	
 	local coutHasBuff = 0
 	for unitName, unitInfo in pairs(roster) do
@@ -347,10 +351,12 @@ function PallyPowerLite:UpdateOverlayLayout()
 	
  
 	local buttonName = "PPLOverlayFrameButtonBuff";
-	_G[buttonName]:SetAttribute("spell", (not buffID or buffID == "") and "" or GetSpellInfo(buffID))
 	_G[buttonName]:SetBackdropColor(buffColor["r"], buffColor["g"], buffColor["b"], buffColor["a"])
 	_G[buttonName.."Icon"]:SetTexture(self.BuffsIcons[PallyPowerLiteSelfAssignment.buff])
 	_G[buttonName.."Counter"]:SetText((coutHasBuff == table.length(roster) or buffID == "") and "" or table.length(roster) - coutHasBuff)
+	if not InCombatLockdown() then -- Attribute can be updated only not in combat
+		_G[buttonName]:SetAttribute("spell", (not buffID or buffID == "") and "" or GetSpellInfo(buffID))
+	end
 end
 
 function PallyPowerLite:UpdateOverlayAnchorLayout()
@@ -366,6 +372,7 @@ function PallyPowerLite:UpdateOverlayAnchorLayout()
 end
 
 function PallyPowerLite:CycleThroughSpell(pallyName, spellType, forward)
+	if InCombatLockdown() then return end -- Can't change assignment in combat
 	local pallyData = pallysData[pallyName]
 	if not pallyData or not spellType
 		or (not pallyData.freeAssign and pallyName ~= player) then return end
