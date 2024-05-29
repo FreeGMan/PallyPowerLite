@@ -10,3 +10,4 @@ ignore:
     - .gitignore
     - .gitattributes
     - PallyPowerLite.wowproj
+    - create_changelog.sh
