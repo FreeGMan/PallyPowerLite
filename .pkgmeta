@@ -1,0 +1,12 @@
+package-as: PallyPowerLite
+
+enable-nolib-creation: no
+
+manual-changelog:
+    filename: CHANGELOG.md
+    markup-type: markdown
+
+ignore:
+    - .gitignore
+    - .gitattributes
+    - PallyPowerLite.wowproj
