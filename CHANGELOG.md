@@ -1,5 +1,11 @@
 # Pally Power Lite
 
+## 1.0.2
+
+- Fixed protection functions error (can't change assignment in combat anymore)
+- Fixed and improved buffs information on layout
+- Some workflow automation
+
 ## 1.0.0
 
 - Release update
