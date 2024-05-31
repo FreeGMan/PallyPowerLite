@@ -213,7 +213,7 @@ function PallyPowerLite:UpdateRoster()
 	-- Clean pallys data who not in roster anymore
 	for pallyName in pairs(pallysData) do
 		if pallyName ~= player and not roster[pallyName] then
-			table.remove(pallysData, pallyName)
+			table.removekey(pallysData, pallyName)
 		end
 	end
 
@@ -656,6 +656,12 @@ function table.length(obj)
   local res = 0
   for _ in pairs(obj) do res = res + 1 end
   return res
+end
+
+function table.removekey(table, key)
+    local element = table[key]
+    table[key] = nil
+    return element
 end
 
 function fpairs(obj, first)
