@@ -51,4 +51,4 @@ A couple of things I might implement in the future
 - Skins and other frame options
 - Support more than 8 pallys in assignment window
 - Cooldowns for overlay frame
-- ???
+- Show info about overlapped buffs (prio King) in the overlay

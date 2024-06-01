@@ -1,5 +1,9 @@
 # Pally Power Lite
 
+## 1.0.3
+
+- Fixed error caused on pally with Pally Power leave the party/raid (pallys roster update)
+
 ## 1.0.2
 
 - Fixed protection functions error (can't change assignment in combat anymore)
