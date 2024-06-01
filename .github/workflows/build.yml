@@ -38,7 +38,9 @@ jobs:
       
       # create and replace full log with a short one
       - name: Create Changelog
-        run: ./create_changelog.sh
+        run: |
+            chmod +x ./create_changelog.sh
+            ./create_changelog.sh
 
       # once cloned, we just run the GitHub Action for the packager project
       - name: Package and release
