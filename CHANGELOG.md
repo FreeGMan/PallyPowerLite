@@ -1,6 +1,6 @@
 # Pally Power Lite
 
-## 1.0.3
+## 1.0.4
 
 - Fixed error caused on pally with Pally Power leave the party/raid (pallys roster update)
 
