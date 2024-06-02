@@ -35,15 +35,14 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0  # gets entire git history, needed for automatic changelogs
+          fetch-tags: true # gets tags for same
       
       # create and replace full log with a short one
       - name: Create Changelog
-        run: |
-            chmod +x ./create_changelog.sh
-            ./create_changelog.sh
+        run: ./create_changelog.sh
 
       # once cloned, we just run the GitHub Action for the packager project
-      - name: Package and release
-        uses: BigWigsMods/packager@v2
-        with:
-          args: -n "{package-name}-{project-version}-{release-type}"
+      #- name: Package and release
+      #  uses: BigWigsMods/packager@v2
+      #  with:
+      #    args: -n "{package-name}-{project-version}-{release-type}"
