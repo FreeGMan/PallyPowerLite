@@ -434,7 +434,7 @@
 	
 	<Frame name="PPLAssignmentFrame" inherits="BackdropTemplate" hidden="true" parent="UIParent" toplevel="true" movable="true" enableMouse="true">
 		<Size>
-			<AbsDimension x="400" y="500" />
+			<AbsDimension x="400" y="530" />
 		</Size>
 		<Anchors>
 			<Anchor point="CENTER">
@@ -940,6 +940,40 @@
 							</Anchor>
 						</Anchors>
 					</Frame>
+				</Frames>
+			</Frame>
+			<Frame name="$parentFooter">
+				<Size>
+					<AbsDimension x="370" y="30" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="11" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<CheckButton name="$parentFreeAssign" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="20" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point = "BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x = "3" y = "1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								_G[self:GetName().."Text"]:SetText("Free Assignment")
+							</OnLoad>
+							<OnClick>
+								PallyPowerLite:FooterButtonFreeAssign_OnClick(self)
+							</OnClick>
+						</Scripts>
+					</CheckButton>
 				</Frames>
 			</Frame>
 		</Frames>

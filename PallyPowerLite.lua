@@ -63,7 +63,8 @@ function PallyPowerLite:OnInitialize()
 			overlayPos = {
 				x = 0,
 				y = 0
-			}
+			},
+			freeAssign = false
 		},
 	})
 	self.prof = self.db.profile
@@ -175,6 +176,7 @@ function PallyPowerLite:UpdateSeflData()
 	selfData.talents.prot = select(5, GetTalentTabInfo(2))
 	selfData.talents.retri = select(5, GetTalentTabInfo(3))
 	selfData.assignment = table.copy(PallyPowerLiteSelfAssignment)
+	selfData.freeAssign = self.prof.freeAssign
 
 	pallysData[player] = selfData
 
@@ -302,6 +304,23 @@ function PallyPowerLite:UpdateAssignmentFrameLayout()
 			i = i + 1
 			frameHeight = frameHeight + rowHeight
 			rowFrame:Show()
+		end
+	end
+
+	-- Footer visibility
+	local footerFrame = _G[mainFrame:GetName().."Footer"]
+	if footerFrame then
+		local freeAssignmentButton = _G[footerFrame:GetName().."FreeAssign"]
+		if isPally then
+			freeAssignmentButton:Show()
+			freeAssignmentButton:SetChecked(pallysData[player].freeAssign)
+		else
+			freeAssignmentButton:Hide()
+			footerFrame:Hide() -- For now hide footer, 'cause no more buttons in there
+		end
+
+		if footerFrame:IsVisible() then
+			frameHeight = frameHeight + footerFrame:GetHeight()
 		end
 	end
 
@@ -620,6 +639,10 @@ function PallyPowerLite:OverlayAnchorButton_OnDragStop(button)
 	_G["PPLOverlayFrame"]:StopMovingOrSizing()
 end
 
+function PallyPowerLite:FooterButtonFreeAssign_OnClick(button)
+	self.prof.freeAssign = button:GetChecked()
+	self:UpdateSeflData()
+end
 
 -------------------------------
 -- Global Functions
