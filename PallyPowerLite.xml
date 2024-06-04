@@ -987,7 +987,7 @@
 	
 	<Frame name="PPLOverlayFrame" hidden="true" parent="UIParent" movable="true" enableMouse="true">
 		<Size>
-			<AbsDimension x="80" y="100" />
+			<AbsDimension x="80" y="132" />
 		</Size>
 		<Anchors>
 			<Anchor point="RIGHT">
@@ -997,11 +997,45 @@
 			</Anchor>
 		</Anchors>
 		<Frames>
-			<Button name="$parentButtonAura" inherits="PPLOverlayButtonTemplate">
+			<Button name="$parentButtonRF" inherits="PPLOverlayButtonTemplate">
 				<Anchors>
 					<Anchor point="TOP">
 						<Offset>
 							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentIcon" file="Interface\Icons\spell_holy_sealoffury">
+							<Size>
+								<AbsDimension x="20" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="-1" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Attributes>
+					<Attribute name="spell" value="Righteous Fury"/>
+				</Attributes>
+				<Scripts>
+					<OnLoad inherit="prepend">
+						PallyPowerLite:OverlayButton_OnLoad(self)
+						self:RegisterForClicks("LeftButtonUp");
+					</OnLoad>
+				</Scripts>
+			</Button>
+			<Button name="$parentButtonAura" inherits="PPLOverlayButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-32" />
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -1026,7 +1060,7 @@
 				<Anchors>
 					<Anchor point="TOP">
 						<Offset>
-							<AbsDimension x="0" y="-32" />
+							<AbsDimension x="0" y="-64" />
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -1051,7 +1085,7 @@
 				<Anchors>
 					<Anchor point="TOP">
 						<Offset>
-							<AbsDimension x="0" y="-64" />
+							<AbsDimension x="0" y="-96" />
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -1091,7 +1125,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="-6" y="-27" />
+							<AbsDimension x="-6" y="-59" />
 						</Offset>
 					</Anchor>
 				</Anchors>
