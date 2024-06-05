@@ -357,10 +357,12 @@ function PallyPowerLite:UpdateOverlayLayout()
 	-- Righteous Fury buff	
 	local buttonName = "PPLOverlayFrameButtonRF";
 	_G[buttonName]:SetBackdropColor(rfColor["r"], rfColor["g"], rfColor["b"], rfColor["a"])
-	if UnitGroupRolesAssigned("player") == "TANK" then
-		_G[buttonName]:Show()
-	else
-		_G[buttonName]:Hide()
+	if not InCombatLockdown() then
+		if UnitGroupRolesAssigned("player") == "TANK" then
+			_G[buttonName]:Show()
+		else
+			_G[buttonName]:Hide()
+		end
 	end
 	
 	-- Aura and Seal
