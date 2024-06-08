@@ -64,10 +64,13 @@ function PallyPowerLite:OnInitialize()
 				x = 0,
 				y = 0
 			},
+			overlayShowRF = true,
 			freeAssign = false
 		},
 	})
 	self.prof = self.db.profile
+	LibStub("AceConfig-3.0"):RegisterOptionsTable("PallyPowerLite", self.options)
+	LibStub("AceConfigDialog-3.0"):AddToBlizOptions("PallyPowerLite", "PallyPower Lite")
 
 	-- Initialize minimap icon
 	self.MinimapIcon = LibStub("LibDBIcon-1.0")
@@ -316,7 +319,7 @@ function PallyPowerLite:UpdateAssignmentFrameLayout()
 			freeAssignmentButton:SetChecked(pallysData[player].freeAssign)
 		else
 			freeAssignmentButton:Hide()
-			footerFrame:Hide() -- For now hide footer, 'cause no more buttons in there
+			footerFrame:Hide() -- For now hide footer, 'cause no more buttons is there
 		end
 
 		if footerFrame:IsVisible() then
@@ -358,7 +361,7 @@ function PallyPowerLite:UpdateOverlayLayout()
 	local buttonName = "PPLOverlayFrameButtonRF";
 	_G[buttonName]:SetBackdropColor(rfColor["r"], rfColor["g"], rfColor["b"], rfColor["a"])
 	if not InCombatLockdown() then
-		if UnitGroupRolesAssigned("player") == "TANK" then
+		if UnitGroupRolesAssigned("player") == "TANK" and self.prof.overlayShowRF then
 			_G[buttonName]:Show()
 		else
 			_G[buttonName]:Hide()
