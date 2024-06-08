@@ -42,7 +42,7 @@ jobs:
         run: ./create_changelog.sh
 
       # once cloned, we just run the GitHub Action for the packager project
-      #- name: Package and release
-      #  uses: BigWigsMods/packager@v2
-      #  with:
-      #    args: -n "{package-name}-{project-version}-{release-type}"
+      - name: Package and release
+       uses: BigWigsMods/packager@v2
+       with:
+         args: -n "{package-name}-{project-version}-{release-type}"
