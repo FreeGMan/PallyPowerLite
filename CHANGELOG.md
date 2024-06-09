@@ -1,5 +1,16 @@
 # Pally Power Lite
 
+## 1.0.6
+
+- Added Free assignment option
+- Added Righteous Fury button in overlay (for prot spec)
+- Added addon options (some useful display options)
+- Some bug fixes
+
+## 1.0.5
+
+- Alpha work around free assignment, new overlay features and addon options
+
 ## 1.0.4
 
 - Fixed error caused on pally with Pally Power leave the party/raid (pallys roster update)

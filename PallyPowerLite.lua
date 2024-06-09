@@ -63,10 +63,14 @@ function PallyPowerLite:OnInitialize()
 			overlayPos = {
 				x = 0,
 				y = 0
-			}
+			},
+			overlayShowRF = true,
+			freeAssign = false
 		},
 	})
 	self.prof = self.db.profile
+	LibStub("AceConfig-3.0"):RegisterOptionsTable("PallyPowerLite", self.options)
+	LibStub("AceConfigDialog-3.0"):AddToBlizOptions("PallyPowerLite", "PallyPower Lite")
 
 	-- Initialize minimap icon
 	self.MinimapIcon = LibStub("LibDBIcon-1.0")
@@ -122,7 +126,7 @@ function PallyPowerLite:OnEnable()
 	self:RegisterEvent("UNIT_AURA")
 	self:RegisterEvent("GROUP_JOINED")
 	self:RegisterEvent("GROUP_LEFT")
-	self:RegisterBucketEvent("ACTIVE_TALENT_GROUP_CHANGED", 1, "ACTIVE_TALENT_GROUP_CHANGED")
+	self:RegisterBucketEvent({"ACTIVE_TALENT_GROUP_CHANGED", "PLAYER_ROLES_ASSIGNED"}, 1, "ACTIVE_TALENT_GROUP_CHANGED")
 	self:RegisterBucketEvent("PLAYER_ENTERING_WORLD", 2, "PLAYER_ENTERING_WORLD")
 	self:RegisterBucketEvent({"GROUP_ROSTER_UPDATE", "PLAYER_REGEN_ENABLED"}, 2, "GROUP_ROSTER_UPDATE")
 
@@ -175,6 +179,7 @@ function PallyPowerLite:UpdateSeflData()
 	selfData.talents.prot = select(5, GetTalentTabInfo(2))
 	selfData.talents.retri = select(5, GetTalentTabInfo(3))
 	selfData.assignment = table.copy(PallyPowerLiteSelfAssignment)
+	selfData.freeAssign = self.prof.freeAssign
 
 	pallysData[player] = selfData
 
@@ -305,6 +310,23 @@ function PallyPowerLite:UpdateAssignmentFrameLayout()
 		end
 	end
 
+	-- Footer visibility
+	local footerFrame = _G[mainFrame:GetName().."Footer"]
+	if footerFrame then
+		local freeAssignmentButton = _G[footerFrame:GetName().."FreeAssign"]
+		if isPally then
+			freeAssignmentButton:Show()
+			freeAssignmentButton:SetChecked(pallysData[player].freeAssign)
+		else
+			freeAssignmentButton:Hide()
+			footerFrame:Hide() -- For now hide footer, 'cause no more buttons is there
+		end
+
+		if footerFrame:IsVisible() then
+			frameHeight = frameHeight + footerFrame:GetHeight()
+		end
+	end
+
 	mainFrame:SetHeight(frameHeight)
 end
 
@@ -315,6 +337,8 @@ function PallyPowerLite:UpdateOverlayLayout()
 	local auraColor = auraID == "" and {r=0, g=0, b=0, a=0.5} or {r=1, g=0, b=0, a=0.4}
 	local sealID = self.Seals[PallyPowerLiteSelfAssignment.seal]
 	local sealColor = sealID == "" and {r=0, g=0, b=0, a=0.5} or {r=1, g=0, b=0, a=0.4}
+	
+	local rfColor = {r=1, g=0, b=0, a=0.4}
 
 	local i=1
 	local currentBuffSource, _, _, currentBuffID = select(7, UnitBuff("player", i))
@@ -325,11 +349,26 @@ function PallyPowerLite:UpdateOverlayLayout()
 		if currentBuffSource == "player" and currentBuffID == sealID then
 			sealColor = {r=0, g=1, b=0, a=0.4}
 		end
+		if currentBuffSource == "player" and currentBuffID == 25780 then
+			rfColor = {r=0, g=1, b=0, a=0.4}
+		end
 		
 		i=i+1
 		currentBuffSource, _, _, currentBuffID = select(7, UnitBuff("player", i))
 	end
+
+	-- Righteous Fury buff	
+	local buttonName = "PPLOverlayFrameButtonRF";
+	_G[buttonName]:SetBackdropColor(rfColor["r"], rfColor["g"], rfColor["b"], rfColor["a"])
+	if not InCombatLockdown() then
+		if UnitGroupRolesAssigned("player") == "TANK" and self.prof.overlayShowRF then
+			_G[buttonName]:Show()
+		else
+			_G[buttonName]:Hide()
+		end
+	end
 	
+	-- Aura and Seal
 	local buttonName = "PPLOverlayFrameButtonAura";
 	_G[buttonName]:SetBackdropColor(auraColor["r"], auraColor["g"], auraColor["b"], auraColor["a"])
 	_G[buttonName.."Icon"]:SetTexture(self.AurasIcons[PallyPowerLiteSelfAssignment.aura])
@@ -344,6 +383,7 @@ function PallyPowerLite:UpdateOverlayLayout()
 		_G[buttonName]:SetAttribute("spell", (not sealID or sealID == "") and "" or GetSpellInfo(sealID))
 	end
 	
+	-- Buff
 	local coutHasBuff = 0
 	for unitName, unitInfo in pairs(roster) do
 		if unitInfo.hasBuff then
@@ -356,7 +396,6 @@ function PallyPowerLite:UpdateOverlayLayout()
 		or coutHasBuff < table.length(roster) and {r=1, g=1, b=0, a=0.4}
 		or {r=0, g=1, b=0, a=0.4}
 	
- 
 	local buttonName = "PPLOverlayFrameButtonBuff";
 	_G[buttonName]:SetBackdropColor(buffColor["r"], buffColor["g"], buffColor["b"], buffColor["a"])
 	_G[buttonName.."Icon"]:SetTexture(self.BuffsIcons[PallyPowerLiteSelfAssignment.buff])
@@ -553,6 +592,7 @@ end
 function PallyPowerLite:ACTIVE_TALENT_GROUP_CHANGED()
 	self:UpdateSeflData()
 	self:UpdateAssignmentFrameLayout()
+	self:UpdateOverlayLayout()
 end
 
 
@@ -618,6 +658,11 @@ end
 
 function PallyPowerLite:OverlayAnchorButton_OnDragStop(button)
 	_G["PPLOverlayFrame"]:StopMovingOrSizing()
+end
+
+function PallyPowerLite:FooterButtonFreeAssign_OnClick(button)
+	self.prof.freeAssign = button:GetChecked()
+	self:UpdateSeflData()
 end
 
 

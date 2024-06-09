@@ -1,7 +1,7 @@
 <Ui xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd" xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="PallyPowerLite.lua" />
 	<Script file="PallyPowerLiteValues.lua" />
-	
+	<Script file="PallyPowerLiteOptions.lua" />
 	
 	<Frame name="PPLHeaderClassInfoTemplate" virtual="true">
 		<Size>
@@ -434,7 +434,7 @@
 	
 	<Frame name="PPLAssignmentFrame" inherits="BackdropTemplate" hidden="true" parent="UIParent" toplevel="true" movable="true" enableMouse="true">
 		<Size>
-			<AbsDimension x="400" y="500" />
+			<AbsDimension x="400" y="530" />
 		</Size>
 		<Anchors>
 			<Anchor point="CENTER">
@@ -942,6 +942,40 @@
 					</Frame>
 				</Frames>
 			</Frame>
+			<Frame name="$parentFooter">
+				<Size>
+					<AbsDimension x="370" y="30" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="11" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<CheckButton name="$parentFreeAssign" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="20" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point = "BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x = "3" y = "1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								_G[self:GetName().."Text"]:SetText("Free Assignment")
+							</OnLoad>
+							<OnClick>
+								PallyPowerLite:FooterButtonFreeAssign_OnClick(self)
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+			</Frame>
 		</Frames>
 		<Scripts>
 			<OnLoad inherit="prepend">
@@ -953,7 +987,7 @@
 	
 	<Frame name="PPLOverlayFrame" hidden="true" parent="UIParent" movable="true" enableMouse="true">
 		<Size>
-			<AbsDimension x="80" y="100" />
+			<AbsDimension x="80" y="132" />
 		</Size>
 		<Anchors>
 			<Anchor point="RIGHT">
@@ -963,11 +997,45 @@
 			</Anchor>
 		</Anchors>
 		<Frames>
-			<Button name="$parentButtonAura" inherits="PPLOverlayButtonTemplate">
+			<Button name="$parentButtonRF" inherits="PPLOverlayButtonTemplate">
 				<Anchors>
 					<Anchor point="TOP">
 						<Offset>
 							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentIcon" file="Interface\Icons\spell_holy_sealoffury">
+							<Size>
+								<AbsDimension x="20" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="-1" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Attributes>
+					<Attribute name="spell" value="Righteous Fury"/>
+				</Attributes>
+				<Scripts>
+					<OnLoad inherit="prepend">
+						PallyPowerLite:OverlayButton_OnLoad(self)
+						self:RegisterForClicks("LeftButtonUp");
+					</OnLoad>
+				</Scripts>
+			</Button>
+			<Button name="$parentButtonAura" inherits="PPLOverlayButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-32" />
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -992,7 +1060,7 @@
 				<Anchors>
 					<Anchor point="TOP">
 						<Offset>
-							<AbsDimension x="0" y="-32" />
+							<AbsDimension x="0" y="-64" />
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -1017,7 +1085,7 @@
 				<Anchors>
 					<Anchor point="TOP">
 						<Offset>
-							<AbsDimension x="0" y="-64" />
+							<AbsDimension x="0" y="-96" />
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -1057,7 +1125,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="-6" y="-27" />
+							<AbsDimension x="-6" y="-59" />
 						</Offset>
 					</Anchor>
 				</Anchors>

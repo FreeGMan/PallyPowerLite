@@ -25,6 +25,7 @@ Click on minimap icon or slash command (/ppl or /pallipowerlite), to open party/
 - Shows the pallys with addon, they role and number of talent points by spec
 - Scroll mouse wheel up/down above the buttons of Aura or Buff to cycle and assign that
 - Show up to 8 paladins (you own always show first)
+- "Free Assignment" button that allows the raid to change your assignments
 
 ## Credits and Additional Info
 
@@ -47,8 +48,8 @@ I don't mean the changes made by the Blizzards and what the paladins themselves 
 
 A couple of things I might implement in the future
 
-- Free assignment option
-- Skins and other frame options
+- ~~Free assignment option~~
+- Skins ~~and other frame options~~
 - Support more than 8 pallys in assignment window
 - Cooldowns for overlay frame
 - Show info about overlapped buffs (prio King) in the overlay
