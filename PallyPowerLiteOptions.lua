@@ -58,13 +58,15 @@ PallyPowerLite.options = {
 		overlay_header = {
 			name = "Overlay Options",
 			type = "header",
-			order = 4
+			order = 4,
+			hidden = function(info) return select(2, UnitClass("player")) ~= "PALADIN" end
 		},
 		overlay_rf_button = {
 			name = "Enable RF Button",
 			desc = "Enables/Disables showing Righteous Fury button in overlay (showing only in tank spec)",
 			type = "toggle",
 			order = 5,
+			hidden = function(info) return select(2, UnitClass("player")) ~= "PALADIN" end,
 			set = function(info, val)
 				PallyPowerLite.prof.overlayShowRF = not PallyPowerLite.prof.overlayShowRF
 				PallyPowerLite:UpdateOverlayLayout()
@@ -76,6 +78,7 @@ PallyPowerLite.options = {
 			desc = "Resets overlay position (if you lost it)",
 			type = "execute",
 			order = 5,
+			hidden = function(info) return select(2, UnitClass("player")) ~= "PALADIN" end,
 			func  = function(info)
 				PallyPowerLite.prof.overlayPos.x = 0;
 				PallyPowerLite.prof.overlayPos.y = 0;
