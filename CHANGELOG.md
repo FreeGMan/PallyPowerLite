@@ -1,11 +1,15 @@
 # Pally Power Lite
 
-## 1.0.6
+## 1.0.7
 
 - Added Free assignment option
 - Added Righteous Fury button in overlay (for prot spec)
 - Added addon options (some useful display options)
 - Some bug fixes
+- 
+## 1.0.6
+
+- Fixes, fixes, bugs and more fixes
 
 ## 1.0.5
 
