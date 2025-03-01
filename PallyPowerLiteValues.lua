@@ -1,3 +1,5 @@
+L = {}
+L["PallyPower Lite"] = "PallyPower Lite"
 
 PallyPowerLite.commPrefix = "PLPWRL"
 PallyPowerLite.pallyDataTemplate = {
